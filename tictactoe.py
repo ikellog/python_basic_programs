@@ -1,59 +1,29 @@
-# Before your interview, write a program that lets two humans play a game of Tic Tac Toe in a terminal. 
-# The program should let the players take turns to input their moves. The program should report the outcome of the game.
+# tic tac toe game
+# start program with welcome prompt
+# give option for user, play against IA or human player
+# if user enter h, start tic tac toe against human
+# if user enter c, print "feature no yet avaiable"
 
-# During your interview, you will pair on adding support for a computer player to your game. You can start with random 
-# moves and make the AI smarter if you have time.
+# display game rules & gameboard. (add *while loop + random player start*)
+# if player 1 turn, enter number between 1 - 9. (input)
+#   update gameboard to reflect player 1 input
+#   save player 1 postion in memory
+#   check condition for winner or tie, else continue game
 
-#   CLI 
-#   Welcome to Ultimate Tic Tac Toe!
-# 
-#   enter "c" - play against AI
-#   enter "h" - play against human
-#   Choose play mode: h
-#
-#   Tic Tac Toe, human player!
-#   Game Rules: connect 3 in a row and win
-#               enter a number to mark your spot
-#   Start game:
-#               7 | 8 | 9
-#               4 | 5 | 6
-#               1 | 2 | 3
-#
-#   (X) - Player 1 turn, enter a number: 1
-# 
-#               7 | 8 | 9
-#               4 | 5 | 6
-#               X | 2 | 3
-# 
-#   (O) - Player 2 turn, enter a number: 7
-# 
-#               O | 8 | 9
-#               4 | 5 | 6
-#               X | 2 | 3
-# 
-#   (X) - Player 1 turn, enter a number: 5
-# 
-#               O | 8 | 9
-#               4 | X | 6
-#               X | 2 | 3
-# 
-#   (O) - Player 2 turn, enter a number: 8
-# 
-#               O | O | 9
-#               4 | X | 6
-#               X | 2 | 3
-# 
-#   (X) - Player 1 turn, enter a number: 9
-# 
-#               O | O | X
-#               4 | X | 6
-#               X | 2 | 3
-# 
-#   Congratulations, Player 1 is the winner!
-#   press 'n' for a new game or 'e' to exit program
-# 
-#               O | O | O
-#               O | X | X
-#               X | X | O 
-#
-#   It's a tie! press 'n' for a new game or 'e' to exit program
+# if player 2 turn, enter number between 1 - 9. (input)
+#   update gameboard to reflect player 2 input
+#   save player 2 position in memory
+#   check condition for winner or tie, else continue game
+
+# if no winner after 9 turns, game is a tie.
+#   if either player has the following numbers in any order, they win:
+# 1,2,3
+# 4,5,6
+# 7,8,9
+# 1,4,5
+# 2,5,8
+# 3,6,9
+# 1,5,9
+
+# after game has a winner or tie. (display thhe winner or if its a tie)
+# give player the option for new game or exit program
