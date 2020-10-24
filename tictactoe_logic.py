@@ -1,3 +1,22 @@
+def cli_start():
+    print('---------------------------------------')
+    print('Welcome to Ultimate Tic Tac Toe!\n')
+    print('Enter "c" - play against AI\nEnter "h" - play against human')
+
+    play_loop = 0
+    while play_loop == 0:
+        user_input = input('Choose play mode: ')
+        try:
+            if user_input == 'c':
+                print('feature not yet available')
+            elif user_input == 'h':
+                play_game_h()
+
+            else:
+                print('Error, you must enter "c" [play against AI] or "h" [play against human]')
+        except:
+            print('Error, you must enter "c" or "h" to start game')
+
 def start_intro_h():
     print('---------------------------------------')
     print('Tic Tac Toe, human player mode!')
@@ -61,9 +80,12 @@ def game_body_h():
                     p1_spots.append(int(p1_input))
                     open_spots.remove(int(p1_input))
                     display_updated_gird(p1_spots,p2_spots)
-                    if len(open_spots) == 0:
+                    if win_condition(p1_spots, p2_spots) == True:
+                        print("Player 1 wins!")
+                        
+                    elif len(open_spots) == 0:
                         print('end game') # end game function
-                        break
+                        round_num = 0
                     p1_loop = 1
                 else:
                     print('Error, you must enter a number in', open_spots)
@@ -79,6 +101,7 @@ def game_body_h():
                     p2_spots.append(int(p2_input))
                     open_spots.remove(int(p2_input))
                     display_updated_gird(p1_spots, p2_spots)
+                    win_condition(p1_spots, p2_spots)
                     p2_loop = 1
                 else:
                     print('Error, you must enter a number in', open_spots)
@@ -87,7 +110,7 @@ def game_body_h():
 
         round_num -= 1
 
-def win_condition(p1_spots):
+def win_condition(p1_spots, p2_spots):
     '''
     compares spots taken by X with win combinations, player is winner if matched
     '''
@@ -103,13 +126,30 @@ def win_condition(p1_spots):
 
         for combo in win_combo:
             if s == combo:
-                print('you win')
-                break
+                c = 6
+                return True
+            else:
+                c += 1
+    
+    c = 0 
+    while c < 6:
+        s = []
+        for i in win_combo[0+c]:
+            for e in p2_spots:
+                if i == e:
+                    s.append(e)
+
+        for combo in win_combo:
+            if s == combo:
+                c = 6
+                return True
             else:
                 c += 1
 
+# def new_game_or_exit():
+    
+def play_game_h():
+    start_intro_h()
+    game_body_h()
 
-# start_intro_h()
-# game_body_h()
-
-win_condition([1,7,3,2])
+cli_start()
