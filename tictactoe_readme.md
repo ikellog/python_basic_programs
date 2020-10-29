@@ -56,3 +56,9 @@
                 X | X | O 
 
     It's a tie! press 'n' for a new game or 'e' to exit program
+
+
+Start program using coding editor. built with VSCODE. 
+Features not yet avaible
+    -AI
+    -Exit program

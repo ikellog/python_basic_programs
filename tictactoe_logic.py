@@ -169,3 +169,6 @@ def new_game_exit():
                 print('''Error! press 'n' for a new game or 'e' to exit program''')
         except:
             print('''Error! press 'n' for a new game or 'e' to exit program''')
+
+
+cli_start()
