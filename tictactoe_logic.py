@@ -10,22 +10,12 @@ def cli_start():
             if user_input == 'c':
                 print('feature not yet available')
             elif user_input == 'h':
-                play_game_h()
-
+                game_start_h()
+                break
             else:
                 print('Error, you must enter "c" [play against AI] or "h" [play against human]')
         except:
             print('Error, you must enter "c" or "h" to start game')
-
-def start_intro_h():
-    print('---------------------------------------')
-    print('Tic Tac Toe, human player mode!')
-    print('Game Rules: Enter a number to mark your spot, connect 3 in a row to win!')
-    print('Start Game:')
-    print('''
-    \t\t7 | 8 | 9
-    \t\t4 | 5 | 6
-    \t\t1 | 2 | 3 ''')
 
 def display_updated_gird(p1_spots, p2_spots):
     '''
@@ -64,7 +54,16 @@ def display_updated_gird(p1_spots, p2_spots):
     \t\t{d} | {e} | {f}
     \t\t{a} | {b} | {c}''')
 
-def game_body_h():
+def game_start_h():
+    print('---------------------------------------')
+    print('Tic Tac Toe, human player mode!')
+    print('Game Rules: Enter a number to mark your spot, connect 3 in a row to win!')
+    print('Start Game:')
+    print('''
+    \t\t7 | 8 | 9
+    \t\t4 | 5 | 6
+    \t\t1 | 2 | 3 ''')
+
     open_spots = [1,2,3,4,5,6,7,8,9]
     p1_spots = []
     p2_spots = []
@@ -80,17 +79,18 @@ def game_body_h():
                     p1_spots.append(int(p1_input))
                     open_spots.remove(int(p1_input))
                     display_updated_gird(p1_spots,p2_spots)
-                    if win_condition(p1_spots, p2_spots) == True:
-                        print("Player 1 wins!")
-                        
+                    if win_condition_X(p1_spots) == True:
+                        print("Congratulations, Player 1 is the winner!")
+                        new_game_exit()
                     elif len(open_spots) == 0:
-                        print('end game') # end game function
-                        round_num = 0
+                        print("Tie Game!")
+                        new_game_exit()
                     p1_loop = 1
                 else:
                     print('Error, you must enter a number in', open_spots)
             except:
                 print('Error, you must enter a number in', open_spots)
+
 
         p2_loop = 0
         while p2_loop == 0:
@@ -101,7 +101,12 @@ def game_body_h():
                     p2_spots.append(int(p2_input))
                     open_spots.remove(int(p2_input))
                     display_updated_gird(p1_spots, p2_spots)
-                    win_condition(p1_spots, p2_spots)
+                    if win_condition_O(p2_spots) == True:
+                        print("Congratulations, Player 2 is the winner!")
+                        new_game_exit()
+                    elif len(open_spots) == 0:
+                        print("Tie Game!")
+                        new_game_exit()
                     p2_loop = 1
                 else:
                     print('Error, you must enter a number in', open_spots)
@@ -110,46 +115,57 @@ def game_body_h():
 
         round_num -= 1
 
-def win_condition(p1_spots, p2_spots):
+def win_condition_X(p1_spots):
     '''
     compares spots taken by X with win combinations, player is winner if matched
     '''
-    win_combo = [[1,2,3], [4,5,6], [7,8,9], [1,4,5], [2,5,8], [3,6,9], [1,5,9]]
+    win_combo = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
     
     c = 0 
-    while c < 6:
+    while c < 8:
         s = []
         for i in win_combo[0+c]:
             for e in p1_spots:
                 if i == e:
                     s.append(e)
 
-        for combo in win_combo:
-            if s == combo:
-                c = 6
-                return True
-            else:
-                c += 1
+            for combo in win_combo:
+                if s == combo:
+                    return True
+                    c = 8
+                    break
+        c += 1
+
+def win_condition_O(p2_spots):
+    '''
+    compares spots taken by X with win combinations, player is winner if matched
+    '''
+    win_combo = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
     
     c = 0 
-    while c < 6:
+    while c < 8:
         s = []
         for i in win_combo[0+c]:
             for e in p2_spots:
                 if i == e:
                     s.append(e)
 
-        for combo in win_combo:
-            if s == combo:
-                c = 6
-                return True
+            for combo in win_combo:
+                if s == combo:
+                    return True
+                    c = 8
+                    break
+        c += 1
+
+def new_game_exit():
+    while True:
+        try:
+            user_input = input('''press 'n' for a new game or 'e' to exit program: ''')
+            if user_input == 'n':
+                cli_start()
+            elif user_input == 'e':
+                pass
             else:
-                c += 1
-
-# def new_game_or_exit():
-    
-def play_game_h():
-    start_intro_h()
-    game_body_h()
-
-cli_start()
+                print('''Error! press 'n' for a new game or 'e' to exit program''')
+        except:
+            print('''Error! press 'n' for a new game or 'e' to exit program''')
