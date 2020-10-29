@@ -9,7 +9,7 @@
         ask user for input. declare if user wins or loses. 
 
 ----------------------------------
-It's Hangman! find the out the secret word!
+It's Hangman! find the out the secret word to win!
 
 number to tries left: 8
 letters to choose from: abcdefghijklmnopqrstuvwxyz
