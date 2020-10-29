@@ -58,7 +58,8 @@
     It's a tie! press 'n' for a new game or 'e' to exit program
 
 
-Start program using coding editor. built with VSCODE. 
+To start program, use coding editor to open tictactoe_logic.py.
+Program was built with VS CODE. 
 Features not yet avaible
     -AI
     -Exit program
